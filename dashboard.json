@@ -1,0 +1,59 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [ "AWS/ECS", "CPUUtilization", "ClusterName", "${ECS_CLUSTER_NAME}", { "stat": "Average" } ],
+          [ ".", "MemoryUtilization", ".", "${ECS_CLUSTER_NAME}", { "stat": "Average" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${AWS_REGION}",
+        "period": 300,
+        "title": "ECS CPU & Memory Utilization"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [ "AWS/ECS", "DesiredTaskCount", "ClusterName", "${ECS_CLUSTER_NAME}", { "stat": "Sum" } ],
+          [ ".", "RunningTaskCount", ".", "${ECS_CLUSTER_NAME}", { "stat": "Sum" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${AWS_REGION}",
+        "period": 300,
+        "title": "ECS Desired vs Running Tasks"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 6,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [ "AWS/DynamoDB", "ConsumedReadCapacityUnits", "TableName", "${DDB_TABLE_NAME}", { "stat": "Sum" } ],
+          [ ".", "ConsumedWriteCapacityUnits", ".", "${DDB_TABLE_NAME}", { "stat": "Sum" } ],
+          [ ".", "ThrottledRequests", ".", "${DDB_TABLE_NAME}", { "stat": "Sum" } ]
+        ],
+        "view": "timeSeries",
+        "stacked": false,
+        "region": "${AWS_REGION}",
+        "period": 300,
+        "title": "DynamoDB Throughput & Throttling"
+      }
+    }
+  ]
+}
